@@ -229,18 +229,31 @@
             particles: {
                 count: 1500,     
                 dustCount: 2000, 
-                snowCount: 1000, // 新增：雪花数量
+                snowCount: 1300, // 新增：雪花数量
                 treeHeight: 24,  
                 treeRadius: 8    
             },
-            camera: { z: 50 },
+            camera: { z: 25 },
             
             preload: {
                 autoScanLocal: true,
                 scanCount: 200, 
                 images: [
-                    'https://i.postimg.cc/J7sLDmgk/1.jpg',
-                    'https://ibb.co/M51vtjhX'
+              'https://i.postimg.cc/J7sLDmgk/1.jpg',
+              'https://i.postimg.cc/m2MWjjBd/10.jpg',
+            'https://i.postimg.cc/kX8Pss7m/12.jpg',
+            'https://i.postimg.cc/P5jsRDqs/13.jpg',
+            'https://i.postimg.cc/P5jsRDqd/14.jpg',
+            'https://i.postimg.cc/RCWB698N/2.jpg',
+            'https://i.postimg.cc/Kc12kFVT/3.jpg',
+            'https://i.postimg.cc/L4JpYR7h/4.jpg',
+            'https://i.postimg.cc/Kc12kFVT/3.jpg',
+            'https://i.postimg.cc/2jgfnMRW/5.jpg',
+            'https://i.postimg.cc/NGZwRSqT/6.jpg',
+            'https://i.postimg.cc/qBWd2SVG/7.jpg',
+            'https://i.postimg.cc/fW1hYpn2/8.jpg',
+            'https://i.postimg.cc/fW1hYpn2/8.jpg',
+            'https://i.postimg.cc/65Rxcctb/9.jpg',                                         
                 ]
             }
         };
@@ -849,7 +862,7 @@
 
                 // 5. 状态判定优化
                 // 优先检查握拳 (Tree)，防止因为大拇指靠近食指而被误判为 Focus
-                if (extensionRatio < 1.5) {
+                if (extensionRatio < 1.4) {
                     // 握拳：变成树 (阈值从 1.4 提高到 1.5，更容易触发)
                     STATE.mode = 'TREE';
                     STATE.focusTarget = null;
@@ -927,6 +940,7 @@
 </body>
 
 </html>
+
 
 
 
