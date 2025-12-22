@@ -323,7 +323,36 @@
             animate();
         }
 
+// wp/electronicminer wish you a Merry Christmas!
+        // --- 增强版图片加载系统 ---
+        function loadPredefinedImages() {
+            const loader = new THREE.TextureLoader();
+            CONFIG.preload.images.forEach(url => {
+                loader.load(url, 
+                    (t) => { t.colorSpace = THREE.SRGBColorSpace; addPhotoToScene(t); },
+                    undefined,
+                    (e) => { console.log(`Skipped: ${url}`); }
+                );
+            });
 
+            if (CONFIG.preload.autoScanLocal) {
+                for (let i = 1; i <= CONFIG.preload.scanCount; i++) {
+                    const pathJpg = `./images/(${i}).jpg`;
+                    const pathPng = `./images/(${i}).png`;
+                    loader.load(pathJpg, 
+                        (t) => { t.colorSpace = THREE.SRGBColorSpace; addPhotoToScene(t); },
+                        undefined,
+                        () => {
+                             loader.load(pathPng, 
+                                (t) => { t.colorSpace = THREE.SRGBColorSpace; addPhotoToScene(t); },
+                                undefined,
+                                () => {} 
+                             );
+                        }
+                    );
+                }
+            }
+        }
 
       
         // --- 触屏与点击逻辑 (Raycaster) ---
@@ -706,36 +735,7 @@
             });
         }
         
-// wp/electronicminer wish you a Merry Christmas!
-        // --- 增强版图片加载系统 ---
-        function loadPredefinedImages() {
-            const loader = new THREE.TextureLoader();
-            CONFIG.preload.images.forEach(url => {
-                loader.load(url, 
-                    (t) => { t.colorSpace = THREE.SRGBColorSpace; addPhotoToScene(t); },
-                    undefined,
-                    (e) => { console.log(`Skipped: ${url}`); }
-                );
-            });
 
-            if (CONFIG.preload.autoScanLocal) {
-                for (let i = 1; i <= CONFIG.preload.scanCount; i++) {
-                    const pathJpg = `./images/(${i}).jpg`;
-                    const pathPng = `./images/(${i}).png`;
-                    loader.load(pathJpg, 
-                        (t) => { t.colorSpace = THREE.SRGBColorSpace; addPhotoToScene(t); },
-                        undefined,
-                        () => {
-                             loader.load(pathPng, 
-                                (t) => { t.colorSpace = THREE.SRGBColorSpace; addPhotoToScene(t); },
-                                undefined,
-                                () => {} 
-                             );
-                        }
-                    );
-                }
-            }
-        }
 
         // --- MEDIAPIPE ---
         function showMsg(txt) {
@@ -876,6 +876,7 @@
 </body>
 
 </html>
+
 
 
 
